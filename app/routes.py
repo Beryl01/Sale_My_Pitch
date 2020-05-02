@@ -7,24 +7,10 @@ from app.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
 from app.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
-post = [
-    {
-        'author':'Beryl',
-        'title':'Blogs',
-        'content':'news',
-        'date':'20-4-2020'
-    },
-    {
-        'author':'Halima',
-        'title':'Blogs',
-        'content':'news',
-        'date':'21-4-2020'
-    }
-]
-
 @app.route("/")
 @app.route("/index")
 def index():
+    posts = Post.query.all()
     return render_template('index.html', posts=post)
 
 @app.route("/about")
@@ -108,7 +94,7 @@ def new_post():
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
     return render_template('create_pitch.html', title='New Post', form=form, legend='New Post')
 
 @app.route("/post/<int:post_id>")
@@ -143,4 +129,4 @@ def delete_post(post_id):
     db.session.delete(post)
     db.session.commit()
     flash('Your post has been deleted!', 'success')
-    return redirect(url_for('home'))    
+    return redirect(url_for('index'))    
