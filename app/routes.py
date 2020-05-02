@@ -11,7 +11,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 @app.route("/index")
 def index():
     posts = Post.query.all()
-    return render_template('index.html', posts=post)
+    return render_template('index.html', posts=posts)
 
 @app.route("/about")
 def about():
@@ -100,7 +100,7 @@ def new_post():
 @app.route("/post/<int:post_id>")
 def post(post_id):
     post = Post.query.get_or_404(post_id)
-    return render_template('post.html', title=post.title, post=post)
+    return render_template('pitch.html', title=post.title, post=post)
 
 @app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
 @login_required
