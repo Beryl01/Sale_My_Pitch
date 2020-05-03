@@ -20,7 +20,6 @@ MAIL_USE_TLS = True
 MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
 MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
 migrate = Migrate(app,db)
-manage.add_command('db',MigrateCommand)
 mail = Mail(app)
 
 from app import routes
