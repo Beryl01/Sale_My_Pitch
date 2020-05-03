@@ -6,7 +6,8 @@ from app import app, db, bcrypt, mail
 from app.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm, RequestResetForm, ResetPasswordForm
 from app.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
-from flask_mail import Message
+from flask_mail import Mail, Message
+from flask_migrate import Migrate, MigrateCommand
 
 @app.route("/")
 @app.route("/index")
@@ -37,6 +38,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
+        mail_message("Welcome to My Pitch","email/welcome_user",user.email,user=user)
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
@@ -185,3 +187,10 @@ def reset_token(token):
         return redirect(url_for('login'))
     return render_template('reset_token.html', title='Reset Password', form=form)    
 
+def mail_message(subject,template,to,**kwargs):
+    sender_email = 'berylnegesa@gmail.com'
+
+    email = Message(subject, sender=sender_email, recipients=[to])
+    email.body= render_template(template + ".txt",**kwargs)
+    email.html = render_template(template + ".html",**kwargs)
+    mail.send(email)
