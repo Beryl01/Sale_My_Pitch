@@ -15,9 +15,16 @@ def index():
     posts = Post.query.order_by(Post.date.desc()).paginate(page=page, per_page=5)
     return render_template('index.html', posts=posts)
 
-@app.route("/about")
-def about():
-    return render_template('about.html', title='About')
+@app.route("/comment", methods=['GET', 'POST'])
+@login_required
+def comment():
+    form = PostForm()
+    if form.validate_on_submit():
+        comment = Post(content=form.content.data, author=current_user)
+        db.session.add(comment)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('comment.html', title='New Comment', form=form, legend='Add Comment')
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -177,3 +184,4 @@ def reset_token(token):
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('login'))
     return render_template('reset_token.html', title='Reset Password', form=form)    
+

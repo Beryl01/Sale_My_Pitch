@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>20 Best Startup Pitches of all Ctegories: Famous in Tech (For 2020)</h1>
+<h1>20 Best Startup Pitches of all Categories: Famous in Tech (For 2020)</h1>
 {% for post in posts.items %}
 <article class="media content-section">
   <img class="rounded-circle article-img"
@@ -14,15 +14,14 @@
     <p class="article-content">{{ post.content }}</p>
     {% if post.author == current_user %}
     <div>
-      <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_post', post_id=post.id) }}">Add A comment</a>
+      <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('comment') }}">Add A comment</a>
       <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"
-        data-target="#deleteModal">LIKE  <span>19</span></button>
+        data-target="#deleteModal">LIKE  <span>0</span></button>
         <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"
-          data-target="#deleteModal">DISLIKE  <span>19</span></button>
+          data-target="#deleteModal">DISLIKE  <span>0</span></button>
     </div>
     {% endif %}
   </div>
-  
 </article>
 {% endfor %}
 {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
