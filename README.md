@@ -30,7 +30,7 @@ None known for now.
 * CSS3
 * Bootstrap
 
-## setup /Installation Requirements
+## Setup /Installation Requirements
 First clone the repo
    ```$ git clone  ```
 
