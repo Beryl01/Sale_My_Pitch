@@ -13,27 +13,13 @@ from flask_migrate import Migrate, MigrateCommand
 @app.route("/")
 @app.route("/index")
 def index():
-    page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.date.desc()).paginate(page=page, per_page=5)
-    return render_template('index.html', posts=posts)
+    return render_template('index.html')
 
 @app.route("/product")
 def product():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date.desc()).paginate(page=page, per_page=5)
-    return render_template('product.html', posts=posts)    
-
-@app.route("/interview")
-def interview():
-    page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.date.desc()).paginate(page=page, per_page=5)
-    return render_template('interview.html', posts=posts)
-
-@app.route("/promotion")
-def promotion():
-    page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.date.desc()).paginate(page=page, per_page=5)
-    return render_template('promotion.html', posts=posts)        
+    return render_template('product.html', posts=posts)          
 
 @app.route("/comment", methods=['GET', 'POST'])
 @login_required
