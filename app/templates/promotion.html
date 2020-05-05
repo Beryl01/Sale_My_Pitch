@@ -2,14 +2,16 @@
 {% import 'macros.html' as macro %}
 
 {%block content%}
-<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Ranga" rel="stylesheet">
-<div class="jumbotron text-center" style="background-color: black; color: green; padding: 100px 25px; font-family: 'Indie Flower', cursive;">
-    <h1>Promotion Pitches</h1>
+<br>
+<div class="container-fluid">
+    <div class="jumbotron text-center peach-gradient text-monospace" >
+        <h1>Promotion Pitches</h1>
+    </div>
 </div>
-<div class="container" style="font-family: 'Indie+Flower', cursive;">
+<div class="container-fluid" >
     <hr>
     <div class="row">
-        {{macro.displayPitches(pitches)}}
+      
     </div>
 </div>
 {%endblock%}
