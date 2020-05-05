@@ -53,6 +53,6 @@ Now navigate to your browser at: ```localhost:5000```
 
 ## License
 
-[MIT License](LICENSE.md)
+[MIT License](License.md)
 Copyright (c) [2020] [Beryl Negesa Otieno]
 </a>
