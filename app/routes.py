@@ -193,10 +193,3 @@ def reset_token(token):
         return redirect(url_for('login'))
     return render_template('reset_token.html', title='Reset Password', form=form)    
 
-def mail_message(subject,template,to,**kwargs):
-    sender_email = 'berylnegesa@gmail.com'
-
-    email = Message(subject, sender=sender_email, recipients=[to])
-    email.body= render_template(template + ".txt",**kwargs)
-    email.html = render_template(template + ".html",**kwargs)
-    mail.send(email)

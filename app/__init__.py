@@ -21,9 +21,5 @@ MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
 MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
 migrate = Migrate(app,db)
 mail = Mail(app)
-def create_app(config_name):
-    app = Flask(__name__)
-    #........
-    mail.init_app(app)
 
 from app import routes

@@ -1,22 +1,22 @@
-{% macro displayPitches(pitches_list)%}
-    {%for pitch in pitches_list%}
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 review-card" style="margin-bottom: 10px">
-            <div class="card text-center">
-                <h4 class="card-header-title mb-3 text-monospace text-center peach-gradient">{{pitch.pitch_title}}</h4>
-                <div class="card-body">
-                    <p class="card-text text-monospace">{{pitch.pitch_content| truncate(100)}} <br>
-                        Written by:  {{pitch.user.username}} </p>
-                     <a href="/pitch/{{pitch.id}}" class="btn blue-gradient  card-footer">More <i class="fas fa-angle-double-right ml-2"></i></a>
-                </div>
-            </div>
+{% macro displayPosts(post_list)%}
+{%for post in post_list%}
+<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 review-card" style="margin-bottom: 10px">
+    <div class="card text-center">
+        <h4 class="card-header-title mb-3 text-monospace text-center peach-gradient">{{post_title}}</h4>
+        <div class="card-body">
+            <p class="card-text text-monospace">{{post.content| truncate(100)}} <br>
+                Written by: {{post.user.username}} </p>
+            <a href="/post/{{post.id}}" class="btn blue-gradient  card-footer">More <i
+                    class="fas fa-angle-double-right ml-2"></i></a>
         </div>
-    {%endfor%}
+    </div>
+</div>
+{%endfor%}
 {%endmacro%}
-
 {%macro displayComments(comments_list)%}
-    {%for comment in comments_list%}
-        <div class="col-md-12">
-            <p>{{comment.user.username}}: {{comment.comment}}</p>
-        </div>
-    {%endfor%}
+{%for comment in comments_list%}
+<div class="col-md-12">
+    <p>{{comment.user.username}}: {{comment.comment}}</p>
+</div>
+{%endfor%}
 {%endmacro%}
